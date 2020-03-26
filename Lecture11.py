@@ -24,14 +24,15 @@ def findfish(gamePos):
         fishPos = screen.find_color((16544278),0.05,((gamePos[0]+19,gamePos[1]+140),(431,257)))
     print("fish at :" + str(fishPos))
     if fishPos:
-        autopy.mouse.move(fishPos[0],fishPos[1])
+        autopy.mouse.move(fishPos[0]+20,fishPos[1])
         grabAndSave(gamePos)
         return True
     else:
         return False
+
 def endGame(gamePos):
     screen = autopy.bitmap.capture_screen()
-    ok = autopy.bitmap.open("endGame.png")
+    ok = autopy.bitmap.Bitmap.open("endGame.png")
     okPos = screen.find_bitmap(ok,0.05,((gamePos[0]+19,gamePos[1]+140),(289,734)))
     if okPos:
         print("Game Over")
@@ -48,5 +49,5 @@ def startGame():
             if count >= 50:
                 endGame(gamePos)
                 count = 1
-        endGame(gamePos)
+        
 startGame()
